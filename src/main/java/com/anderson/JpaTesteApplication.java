@@ -24,12 +24,19 @@ public class JpaTesteApplication implements CommandLineRunner {
 
         // Metodos a serem executados:
 
-        excluir();
+        contar();
 
 
     }
 
     // Implementacoes
+
+
+    // Contar total de registros
+    private void contar(){
+        long cont = categoriasRepository.count();
+        System.out.println("TOTAL DE CATEGORIAS ENCONTRADAS "+ cont );
+    }
 
 
     // Metodo excluir - CrudRepository
@@ -43,7 +50,7 @@ public class JpaTesteApplication implements CommandLineRunner {
 
     // Metodo atualizar - CrudRepository
     private void atualizar() {
-        Optional<Categoria> optional = categoriasRepository.findById(2);
+        Optional<Categoria> optional = categoriasRepository.findById(3);
         if (optional.isPresent()) {
             Categoria categoria = optional.get();
             categoria.setNome("INFRAESTRUTURA");
@@ -69,8 +76,8 @@ public class JpaTesteApplication implements CommandLineRunner {
     // Metodo salvar - CrudRepository
     private void categoriaSalvar() {
         Categoria categoria = new Categoria();
-        categoria.setNome("INFRAESTRUTURA");
-        categoria.setDescricao("Trabalhos de rarduware e redes");
+        categoria.setNome("DESENVOLVIMENTO");
+        categoria.setDescricao("DESENVOLVIMENTO DE SISTEMAS");
 
         categoriasRepository.save(categoria);
         System.out.println(categoria);
