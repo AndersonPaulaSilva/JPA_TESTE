@@ -16,8 +16,13 @@ public class JpaTesteApplication implements CommandLineRunner {
 
 		// Metodos a serem executados:
 
-		System.out.println("PRIMEIRO TESTE EXECUTADO...");
+		salvar();
 	}
 
 	// Implementacoes
+
+	private void salvar(){
+
+		System.out.println("TESTE DO METODO SALVAR....");
+	}
 }
