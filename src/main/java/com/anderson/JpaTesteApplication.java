@@ -18,4 +18,6 @@ public class JpaTesteApplication implements CommandLineRunner {
 
 		System.out.println("PRIMEIRO TESTE EXECUTADO...");
 	}
+
+	// Implementacoes
 }
