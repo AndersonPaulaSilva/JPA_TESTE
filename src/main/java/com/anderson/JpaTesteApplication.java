@@ -16,13 +16,17 @@ public class JpaTesteApplication implements CommandLineRunner {
 
 		// Metodos a serem executados:
 
-		salvar();
+		deletar();
 	}
 
 	// Implementacoes
 
-	private void salvar(){
+	private void salvar() {
 
 		System.out.println("TESTE DO METODO SALVAR....");
+	}
+
+	private void deletar(){
+		System.out.println("TESTE DO METODO DELETAR");
 	}
 }
