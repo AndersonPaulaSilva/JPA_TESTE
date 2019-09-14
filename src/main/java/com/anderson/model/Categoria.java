@@ -1,10 +1,17 @@
 package com.anderson.model;
 
+import javax.persistence.*;
+
 /**
  * Created by Anderson on 14/09/2019.
  */
+
+@Entity
+@Table(name="categorias")
 public class Categoria {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nome;
     private String descricao;
