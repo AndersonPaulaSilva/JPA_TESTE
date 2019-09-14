@@ -7,6 +7,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Optional;
 
 @SpringBootApplication
@@ -24,7 +26,8 @@ public class JpaTesteApplication implements CommandLineRunner {
 
         // Metodos a serem executados:
 
-        excluirTodos();
+        buscartodosID();
+
         contar();
 
 
@@ -33,26 +36,39 @@ public class JpaTesteApplication implements CommandLineRunner {
     // Implementacoes
 
 
+    // Metodo buscar todos por ID - CrudRepository
+    private void buscartodosID() {
+        List<Integer> IDs = new LinkedList<Integer>();
 
+        IDs.add(1);
+        IDs.add(8);
+        IDs.add(13);
 
-    // Metodo excluir todos
-    private void excluirTodos(){
+        Iterable<Categoria> categorias = categoriasRepository.findAllById(IDs);
+
+        for (Categoria cat: categorias){
+            System.out.println(cat);
+        }
+    }
+
+    // Metodo excluir todos - CrudRepository
+    private void excluirTodos() {
         categoriasRepository.deleteAll();
     }
 
-    // Contar total de registros
-    private void contar(){
+    // Contar total de registros - CrudRepository
+    private void contar() {
         long cont = categoriasRepository.count();
-        System.out.println("TOTAL DE CATEGORIAS ENCONTRADAS "+ cont );
+        System.out.println("TOTAL DE CATEGORIAS ENCONTRADAS " + cont);
     }
 
 
     // Metodo excluir por ID - CrudRepository
-    private void excluir(){
+    private void excluir() {
         int idCategoria = 2;
         categoriasRepository.deleteById(idCategoria);
 
-        System.out.println("O REGISTRO "+ idCategoria+" FOI EXCLUIDO!!!");
+        System.out.println("O REGISTRO " + idCategoria + " FOI EXCLUIDO!!!");
 
     }
 
