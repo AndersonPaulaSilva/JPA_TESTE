@@ -24,6 +24,7 @@ public class JpaTesteApplication implements CommandLineRunner {
 
         // Metodos a serem executados:
 
+        excluirTodos();
         contar();
 
 
@@ -32,6 +33,13 @@ public class JpaTesteApplication implements CommandLineRunner {
     // Implementacoes
 
 
+
+
+    // Metodo excluir todos
+    private void excluirTodos(){
+        categoriasRepository.deleteAll();
+    }
+
     // Contar total de registros
     private void contar(){
         long cont = categoriasRepository.count();
@@ -39,7 +47,7 @@ public class JpaTesteApplication implements CommandLineRunner {
     }
 
 
-    // Metodo excluir - CrudRepository
+    // Metodo excluir por ID - CrudRepository
     private void excluir(){
         int idCategoria = 2;
         categoriasRepository.deleteById(idCategoria);
@@ -76,8 +84,8 @@ public class JpaTesteApplication implements CommandLineRunner {
     // Metodo salvar - CrudRepository
     private void categoriaSalvar() {
         Categoria categoria = new Categoria();
-        categoria.setNome("DESENVOLVIMENTO");
-        categoria.setDescricao("DESENVOLVIMENTO DE SISTEMAS");
+        categoria.setNome("TESTE");
+        categoria.setDescricao("TESTES UNITARIOS EM SISTEMAS");
 
         categoriasRepository.save(categoria);
         System.out.println(categoria);
