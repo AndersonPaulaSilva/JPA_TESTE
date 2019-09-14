@@ -24,13 +24,29 @@ public class JpaTesteApplication implements CommandLineRunner {
 
         // Metodos a serem executados:
 
-        buscarPorId();
+        atualizar();
 
 
     }
 
     // Implementacoes
 
+    // Metodo atualizar - CrudRepository
+    private void atualizar() {
+        Optional<Categoria> optional = categoriasRepository.findById(2);
+        if (optional.isPresent()) {
+            Categoria categoria = optional.get();
+            categoria.setNome("INFRAESTRUTURA");
+            categoria.setDescricao("TRABALHOS DE HARDWARE E REDES");
+
+            categoriasRepository.save(categoria);
+            System.out.println(optional.get());
+        } else
+            System.out.println("CATEGORIA NÃO ENCONTRADA");
+
+    }
+
+    // Metodo buscar por id - CrudRepository
     private void buscarPorId() {
         Optional<Categoria> optional = categoriasRepository.findById(1);
         if (optional.isPresent())
@@ -40,10 +56,11 @@ public class JpaTesteApplication implements CommandLineRunner {
     }
 
 
+    // Metodo salvar - CrudRepository
     private void categoriaSalvar() {
         Categoria categoria = new Categoria();
-        categoria.setNome("FINANCEIRO");
-        categoria.setDescricao("Trabalhos de contabilidade");
+        categoria.setNome("INFRAESTRUTURA");
+        categoria.setDescricao("Trabalhos de rarduware e redes");
 
         categoriasRepository.save(categoria);
         System.out.println(categoria);
