@@ -24,12 +24,22 @@ public class JpaTesteApplication implements CommandLineRunner {
 
         // Metodos a serem executados:
 
-        atualizar();
+        excluir();
 
 
     }
 
     // Implementacoes
+
+
+    // Metodo excluir - CrudRepository
+    private void excluir(){
+        int idCategoria = 2;
+        categoriasRepository.deleteById(idCategoria);
+
+        System.out.println("O REGISTRO "+ idCategoria+" FOI EXCLUIDO!!!");
+
+    }
 
     // Metodo atualizar - CrudRepository
     private void atualizar() {
