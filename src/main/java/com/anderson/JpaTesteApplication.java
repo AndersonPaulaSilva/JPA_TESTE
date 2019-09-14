@@ -26,27 +26,70 @@ public class JpaTesteApplication implements CommandLineRunner {
 
         // Metodos a serem executados:
 
-        verificarPorID();
+        salvarTodos();
 
+        contar();
     }
 
     // Implementacoes
 
-    //Metodo verificar se existe por ID
-    private void verificarPorID(){
-        boolean existe = categoriasRepository.existsById(18);
 
-        if(existe == true)
-        System.out.println("A CATEGORIA INFORMADA EXISTE");
+    //Metodo salvar todos
+    private void salvarTodos() {
+        List<Categoria>categorias = getListaCategorias();
+        categoriasRepository.saveAll(categorias);
+
+    }
+
+
+    // Metodo para criar uma lista de categorias
+    private List<Categoria> getListaCategorias() {
+        List<Categoria> lista = new LinkedList<Categoria>();
+
+        //categoria 1
+        Categoria cat1 = new Categoria();
+
+        cat1.setNome("PROGRAMADOR DE BITCOIN");
+        cat1.setDescricao("TRABALHO RELACIONADO MOEDA VIRTUAL");
+
+
+        //categoria 2
+        Categoria cat2 = new Categoria();
+
+        cat2.setNome("ARQUITETO DE INTELIGENCIA ARTIFICIAL");
+        cat2.setDescricao("PROGRAMADOR DE INTELIGENCIA ARTIFICIAL");
+
+
+        //categoria 3
+        Categoria cat3 = new Categoria();
+
+        cat3.setNome("ANALISTA");
+        cat3.setDescricao("ANALISTA DE SISTEMAS");
+
+        lista.add(cat1);
+        lista.add(cat2);
+        lista.add(cat3);
+
+        return lista;
+
+    }
+
+
+    //Metodo verificar se existe por ID - CrudRepository
+    private void verificarPorID() {
+        boolean existe = categoriasRepository.existsById(10);
+
+        if (existe == true)
+            System.out.println("A CATEGORIA INFORMADA EXISTE");
         else
             System.out.println("A CATEGORIA SOLICITADA NÃO EXISTE!!!");
     }
 
 
     //Metodo buscar todos - CrudRepository
-    private void buscarTodos(){
-        Iterable<Categoria>categorias=categoriasRepository.findAll();
-        for (Categoria cat: categorias){
+    private void buscarTodos() {
+        Iterable<Categoria> categorias = categoriasRepository.findAll();
+        for (Categoria cat : categorias) {
             System.out.println(cat);
         }
     }
@@ -61,7 +104,7 @@ public class JpaTesteApplication implements CommandLineRunner {
 
         Iterable<Categoria> categorias = categoriasRepository.findAllById(IDs);
 
-        for (Categoria cat: categorias){
+        for (Categoria cat : categorias) {
             System.out.println(cat);
         }
     }
