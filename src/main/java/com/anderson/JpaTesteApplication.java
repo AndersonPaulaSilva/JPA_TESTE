@@ -26,15 +26,30 @@ public class JpaTesteApplication implements CommandLineRunner {
 
         // Metodos a serem executados:
 
-        buscartodosID();
-
-        contar();
-
+        verificarPorID();
 
     }
 
     // Implementacoes
 
+    //Metodo verificar se existe por ID
+    private void verificarPorID(){
+        boolean existe = categoriasRepository.existsById(18);
+
+        if(existe == true)
+        System.out.println("A CATEGORIA INFORMADA EXISTE");
+        else
+            System.out.println("A CATEGORIA SOLICITADA NÃO EXISTE!!!");
+    }
+
+
+    //Metodo buscar todos - CrudRepository
+    private void buscarTodos(){
+        Iterable<Categoria>categorias=categoriasRepository.findAll();
+        for (Categoria cat: categorias){
+            System.out.println(cat);
+        }
+    }
 
     // Metodo buscar todos por ID - CrudRepository
     private void buscartodosID() {
